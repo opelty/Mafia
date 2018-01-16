@@ -111,7 +111,6 @@ extension ListPlayersViewController: ListPlayersView {
 
 extension ListPlayersViewController: PlayersListTableViewCellDelegate {
     func startGame(withList list: PlayersListMO) {
-        print("Se imprimió el botón")
         presenter.selectList(list: list)
         gamePresenter.restartGame()
         self.navigationController?.popViewController(animated: true)

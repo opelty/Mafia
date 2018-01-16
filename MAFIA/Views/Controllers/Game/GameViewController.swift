@@ -185,8 +185,25 @@ extension GameViewController: UITableViewDelegate {
             if let strongSelf = self {
                 strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
             }
+        }), UITableViewRowAction.init(style: .default, title: "Detail", handler: {
+            [weak self] (_, indexPath) in
+            if let strongSelf = self {
+                let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]
+                let detailViewController: DetailPlayerViewController = DetailPlayerViewController()
+                detailViewController.player = selectedPlayer
+                detailViewController.previousViewController = self
+                strongSelf.present(detailViewController, animated: true, completion: nil)
+            }
         })]
     }
+    
+//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        return UISwipeActionsConfiguration.init(actions: [UIContextualAction.init(style: .normal, title: "Otra acccion", handler: false)])
+//    }
+//
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        return UISwipeActionsConfiguration.init(actions: [UIContextualAction.init(style: .destructive, title: "Otra acccion", handler: false)])
+//    }
 }
 
 extension GameViewController: MenuViewControllerDelegate {

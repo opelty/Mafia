@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073DC135200DA1DD0092183A /* DetailPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073DC134200DA1DD0092183A /* DetailPlayerViewController.swift */; };
 		07434A7E2002B2E0004AE1CC /* DetailListPlayersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */; };
 		6E2618AD1FF5C9BD00F3AF93 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */; };
 		6E2618AF1FF5D2B200F3AF93 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		073DC134200DA1DD0092183A /* DetailPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlayerViewController.swift; sourceTree = "<group>"; };
 		07434A7D2002B2E0004AE1CC /* DetailListPlayersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailListPlayersPresenter.swift; sourceTree = "<group>"; };
 		6E2618AC1FF5C9BD00F3AF93 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		6E2618AE1FF5D2B200F3AF93 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				9620D7C21FE995BC008E0F55 /* TableViewCells */,
 				96591C681FE85B660067BB2E /* GameViewController.swift */,
+				073DC134200DA1DD0092183A /* DetailPlayerViewController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				9620D7C51FE995D0008E0F55 /* PlayerTableViewCell.swift in Sources */,
 				9620D7C01FE99267008E0F55 /* Enums.swift in Sources */,
 				96591C6F1FE85B660067BB2E /* MAFIA.xcdatamodeld in Sources */,
+				073DC135200DA1DD0092183A /* DetailPlayerViewController.swift in Sources */,
 				97CE9FCE1FEB05A700A8A55E /* Utils.swift in Sources */,
 				96F9DE7F1FED60A900C32C30 /* MenuTableViewCell.swift in Sources */,
 				CFE3DA871FF70ECA004D9D0F /* ListPlayersViewController.swift in Sources */,
@@ -776,10 +780,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXJ9GDPGJT;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
 				INFOPLIST_FILE = MAFIA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -792,10 +796,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXJ9GDPGJT;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
 				INFOPLIST_FILE = MAFIA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIA;
+				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIA1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -808,7 +812,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXJ9GDPGJT;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
 				INFOPLIST_FILE = MAFIATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIATests;
@@ -825,7 +829,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JXJ9GDPGJT;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
 				INFOPLIST_FILE = MAFIATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIATests;
@@ -841,6 +845,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
 				INFOPLIST_FILE = MAFIAUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIAUITests;
@@ -856,6 +861,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8Y2NMD7UXB;
 				INFOPLIST_FILE = MAFIAUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.santicarmo31.MAFIAUITests;
