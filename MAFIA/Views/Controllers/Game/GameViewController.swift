@@ -76,6 +76,8 @@ class GameViewController: UIViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
             destinationViewController.gamePresenter = presenter
+        } else if let destinartionVC = segue.destination as? DetailPlayerViewController {
+            destinartionVC.player = sender as? PlayerMO
         }
      }
     
@@ -189,10 +191,7 @@ extension GameViewController: UITableViewDelegate {
             [weak self] (_, indexPath) in
             if let strongSelf = self {
                 let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]
-                let detailViewController: DetailPlayerViewController = DetailPlayerViewController()
-                detailViewController.player = selectedPlayer
-                detailViewController.previousViewController = self
-                strongSelf.present(detailViewController, animated: true, completion: nil)
+                self?.performSegue(withIdentifier: Segues.detailPlayer, sender: selectedPlayer)
             }
         })]
     }
@@ -201,9 +200,20 @@ extension GameViewController: UITableViewDelegate {
 //        return UISwipeActionsConfiguration.init(actions: [UIContextualAction.init(style: .normal, title: "Otra acccion", handler: false)])
 //    }
 //
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        return UISwipeActionsConfiguration.init(actions: [UIContextualAction.init(style: .destructive, title: "Otra acccion", handler: false)])
-//    }
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let detailAction = UIContextualAction(style: .normal, title: "Detail") {
+            [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            if let strongSelf = self {
+                let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]
+                self?.performSegue(withIdentifier: Segues.detailPlayer, sender: selectedPlayer)
+                completionHandler(true)
+            } else {
+                completionHandler(false)
+            }
+        }
+        let swipeConfig = UISwipeActionsConfiguration(actions: [detailAction])
+        return swipeConfig
+    }
 }
 
 extension GameViewController: MenuViewControllerDelegate {

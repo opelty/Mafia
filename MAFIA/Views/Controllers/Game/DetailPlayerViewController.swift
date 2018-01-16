@@ -10,22 +10,21 @@ import UIKit
 
 class DetailPlayerViewController: UIViewController {
     
-    @IBOutlet weak var playerName: UILabel!
-    @IBOutlet weak var roleImage: UIImageView!
+    @IBOutlet weak var namePlayer: UILabel!
+    @IBOutlet weak var imageRole: UIImageView!
     
     weak var player: PlayerMO?
     weak var previousViewController: GameViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let playerUnwrapped = player else { return }
-        setupView(player: playerUnwrapped)
+        
+        if let playerUnwrapped = player {
+            namePlayer.text = playerUnwrapped.name
+            imageRole.image = UIImage(named: "\(playerUnwrapped.role.imageDescription)")
+        }
     }
 
-    func setupView(player: PlayerMO) {
-        self.playerName.text = player.name
-        self.roleImage.image = UIImage(named: "\(player.role.imageDescription)")
-    }
     
     func goBack() {
         let gameViewController = previousViewController
