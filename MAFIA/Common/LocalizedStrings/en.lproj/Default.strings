@@ -32,6 +32,7 @@
 "END_GAME_ACTION_TITLE" = "Iniciar nueva partida";
 "CONTINUE_GAME_ACTION_TITLE" = "Continuar jugando";
 "DELETE_PLAYER_ACTION" = "Eliminar jugador";
+"DETAIL_PLAYER_ACTION" = "Ver Jugador";
 "ADD_LIST_ACTION" = "Agregar lista";
 "CANCEL_ACTION" = "Cancelar";
 "DELETE_LIST_ACTION" = "Eliminar Lista";

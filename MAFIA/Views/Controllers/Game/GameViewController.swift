@@ -182,26 +182,34 @@ extension GameViewController: UITableViewDelegate {
         presenter.revivePlayer(player: deselectedPlayer)
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_PLAYER_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        return [UITableViewRowAction.init(style: .destructive, title: "DELETE_PLAYER_ACTION".localized(), handler: { [weak self] (_, indexPath) in
+//
+//        }), UITableViewRowAction.init(style: .default, title: "Detail", handler: {
+//            [weak self] (_, indexPath) in
+//            if let strongSelf = self {
+//                let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]
+//                self?.performSegue(withIdentifier: Segues.detailPlayer, sender: selectedPlayer)
+//            }
+//        })]
+//    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_PLAYER_ACTION".localized()) {
+            [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
+                completion(true)
+            } else {
+                completion(false)
             }
-        }), UITableViewRowAction.init(style: .default, title: "Detail", handler: {
-            [weak self] (_, indexPath) in
-            if let strongSelf = self {
-                let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]
-                self?.performSegue(withIdentifier: Segues.detailPlayer, sender: selectedPlayer)
-            }
-        })]
+        }
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
     }
-    
-//    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        return UISwipeActionsConfiguration.init(actions: [UIContextualAction.init(style: .normal, title: "Otra acccion", handler: false)])
-//    }
-//
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let detailAction = UIContextualAction(style: .normal, title: "Detail") {
+        let detailAction = UIContextualAction(style: .normal, title: "DETAIL_PLAYER_ACTION".localized()) {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             if let strongSelf = self {
                 let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]
