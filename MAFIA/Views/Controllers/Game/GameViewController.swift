@@ -68,7 +68,11 @@ class GameViewController: UIViewController {
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to re-assing the roles")
         refreshControl.addTarget(self, action: #selector(refreshRoles(_:)), for: UIControlEvents.valueChanged)
-        tableView.refreshControl = refreshControl
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
     }
 
     private func verifyGameCanStart() {
