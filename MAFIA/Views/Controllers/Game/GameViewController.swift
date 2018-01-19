@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
             updateGameUI()
         }
     }
+    lazy private var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -65,6 +66,9 @@ class GameViewController: UIViewController {
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to re-assing the roles")
+        refreshControl.addTarget(self, action: #selector(refreshRoles(_:)), for: UIControlEvents.valueChanged)
+        tableView.refreshControl = refreshControl
     }
 
     private func verifyGameCanStart() {
@@ -161,6 +165,7 @@ extension GameViewController: GameView {
     private func refreshRoles() {
         playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
