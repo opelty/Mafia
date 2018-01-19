@@ -30,7 +30,7 @@ class GameManager {
     }
     
     var numberOfPlayersPlaying: Int {
-        return selectedListPlayers?.players?.count ?? 0
+        return playersPlaying?.count ?? 0
     }
     
     /// Returns the number of civilians team players that are currently playing and are live
@@ -45,7 +45,6 @@ class GameManager {
             return civiliansPlaying
         }
     }
-    
     
     /// Returns the number of mafia team players that are playing and are alive
     var aliveMafia: Int {
