@@ -18,5 +18,9 @@ extension UIViewController {
         alertActionSheet.addAction(okayAction)
         
         self.present(alertActionSheet, animated: true, completion: nil)
+        let when = DispatchTime.now() + 5
+        DispatchQueue.main.asyncAfter(deadline: when){
+            alertActionSheet.dismiss(animated: true, completion: nil)
+        }
     }
 }
