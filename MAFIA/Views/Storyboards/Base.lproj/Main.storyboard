@@ -85,10 +85,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="civiliansLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <outlet property="currentPlayerListName" destination="bPs-tW-ux6" id="RWk-mY-z2b"/>
-                        <outlet property="mafiaLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
+                        <outlet property="mobLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
+                        <outlet property="villagerLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>
                         <segue destination="3Yn-SM-Kce" kind="show" identifier="SeguePlayersList" id="juw-8L-iw2"/>
                         <segue destination="4La-sT-Ykt" kind="show" identifier="SeguePlayerDetail" id="uaL-kt-DI4"/>
                     </connections>
