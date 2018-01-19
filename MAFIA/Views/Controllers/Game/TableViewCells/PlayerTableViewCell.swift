@@ -32,7 +32,7 @@ class PlayerTableViewCell: UITableViewCell {
     
     // MARK: - Methods
     
-    func setCellData(player: PlayerMO) {
+    func setCellData(player: Player) {
         self.nameLabel.text = player.name
         self.roleImageView.image = UIImage(named: "\(player.role.imageDescription)")
     }

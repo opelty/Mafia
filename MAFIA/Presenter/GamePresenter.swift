@@ -9,9 +9,9 @@
 import Foundation
 
 protocol GameView: class {
-    func setPlayers(players: [PlayerMO])
-    func addNewPlayer(player: PlayerMO)
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath)
+    func setPlayers(players: [Player])
+    func addNewPlayer(player: Player)
+    func deletePlayer(player: Player, indexPath: IndexPath)
     func updateGameUI()
     func endGame(winner: Role)
     func restartGame()
@@ -54,27 +54,27 @@ class GamePresenter {
         }
     }
     
-    func refreshRoles(players: [PlayerMO]) -> [PlayerMO] {
+    func refreshRoles(players: [Player]) -> [Player] {
         if players.count >= GameRules.minimumPlayers {
-            return PlayerMO.assignRandomRole(to: players)
+            return RawPlayer.assignRandomRole(to: players)
         }
+        players.forEach({ $0.role = .none })
         return players
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
-        playerService.deletePlayer(player: player) { [weak self] (success) in
-            if success {
-                self?.view.deletePlayer(player: player, indexPath: indexPath)
-            }
+    func deletePlayer(player: Player, indexPath: IndexPath) {
+        if GameManager.currentGame.removeForCurrentGame(player: player) {
+            view.deletePlayer(player: player, indexPath: indexPath)
+            view.updateGameUI()
         }
     }
     
-    func kill(player: PlayerMO) {
+    func kill(player: Player) {
         GameManager.currentGame.kill(player)
         view.updateGameUI()
     }
     
-    func revivePlayer(player: PlayerMO) {
+    func revivePlayer(player: Player) {
         GameManager.currentGame.revive(player)
         view.updateGameUI()
     }

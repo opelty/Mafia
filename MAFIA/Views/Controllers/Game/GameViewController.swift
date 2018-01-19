@@ -22,9 +22,9 @@ class GameViewController: UIViewController {
     
     private let kHeaderView: CGFloat = 80
     private var presenter: GamePresenter!
-    private var playersToDisplay: [PlayerMO] = [PlayerMO]() {
+    private var playersToDisplay: [Player] = [Player]() {
         didSet {
-            tableView.isUserInteractionEnabled = playersToDisplay.count >= GameRules.minimumPlayers
+            updateGameUI()
         }
     }
     
@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()        
         setupTableView()
         setupView()
+        verifyGameCanStart()
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,9 +58,6 @@ class GameViewController: UIViewController {
     private func setupView() {
         presenter = GamePresenter(view: self)
         presenter.showPlayers()
-        currentPlayerListName.text = "LIST_PLAYER_NO_NAME".localized()
-        villagerLabel.text = nil
-        mobLabel.text = nil
     }
     
     private func setupTableView() {
@@ -68,18 +66,38 @@ class GameViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: kHeaderView, left: 0, bottom: 0, right: 0)
         tableView.register(UINib.init(nibName: PlayerTableViewCell.nib, bundle: Bundle.main), forCellReuseIdentifier: PlayerTableViewCell.identifier)
     }
+
+    private func verifyGameCanStart() {
+
+        let gameCanStart = playersToDisplay.count >= GameRules.minimumPlayers
+
+        if playersToDisplay.count == 0 {
+            currentPlayerListName.text = "LIST_PLAYER_NO_NAME".localized()
+            civiliansLabel.text = nil
+            mafiaLabel.text = nil
+        }
+
+        if gameCanStart {
+            civiliansLabel.text = presenter.aliveCiviliansPlayerText
+            mafiaLabel.text = presenter.aliveMafiaPlayerText
+            currentPlayerListName.text = presenter.selectedListName
+        } else {
+            civiliansLabel.text = nil
+            mafiaLabel.text = nil
+        }
+        tableView.isUserInteractionEnabled = gameCanStart
+    }
     
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
             destinationViewController.gamePresenter = presenter
         } else if let destinartionVC = segue.destination as? DetailPlayerViewController {
             destinartionVC.player = sender as? PlayerMO
         }
-     }
+    }
     
     
 }
@@ -88,28 +106,27 @@ class GameViewController: UIViewController {
 
 extension GameViewController: GameView {
     
-    func setPlayers(players: [PlayerMO]) {
+    func setPlayers(players: [Player]) {
         playersToDisplay = players
         tableView.reloadData()
     }
     
-    func addNewPlayer(player: PlayerMO) {
+    func addNewPlayer(player: Player) {
         playersToDisplay.append(player)
         playersToDisplay = self.presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
     }
     
-    func deletePlayer(player: PlayerMO, indexPath: IndexPath) {
+    func deletePlayer(player: Player, indexPath: IndexPath) {
         playersToDisplay.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        refreshRoles()
     }
     
     func updateGameUI() {
-        villagerLabel.text = presenter.aliveCiviliansPlayerText
-        mobLabel.text = presenter.aliveMafiaPlayerText
-        currentPlayerListName.text = presenter.selectedListName
+        verifyGameCanStart()
     }
-    
+
     func endGame(winner: Role) {
         var message: String = ""
         switch winner {
@@ -120,27 +137,27 @@ extension GameViewController: GameView {
         default:
             return
         }
-        
+
         let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
-        
+
         let okAction = UIAlertAction(title: "END_GAME_ACTION_TITLE".localized(), style: .default) { [weak self] (_) in
             if let strongSelf = self {
                 strongSelf.presenter.restartGame()
             }
         }
         let continuePlayingAction = UIAlertAction(title: "CONTINUE_GAME_ACTION_TITLE".localized(), style: .default, handler: nil)
-        
+
         alert.addAction(okAction)
         alert.addAction(continuePlayingAction)
         self.present(alert, animated: true, completion: nil)
-        
+
     }
-    
+
     func restartGame() {
         presenter.showPlayers()
         refreshRoles()
     }
-    
+
     private func refreshRoles() {
         playersToDisplay = presenter.refreshRoles(players: playersToDisplay)
         tableView.reloadData()
