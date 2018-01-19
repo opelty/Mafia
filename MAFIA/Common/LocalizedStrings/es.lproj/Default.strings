@@ -44,6 +44,8 @@
 "DELETE_ACTION" = "Eliminar";
 "DETAIL_ACTION" = "Detalle";
 "OKAY" = "Entendido";
+"ADD_ANOTHER_PLAYER" = "Agregar otro jugador";
+"ADD_ANOTHER_LIST" = "Agregar otra lista";
 
 // MARK: - Menu Titles
 

@@ -44,6 +44,8 @@
 "DELETE_ACTION" = "Delete";
 "DETAIL_ACTION" = "Detail";
 "OKAY" = "Got It";
+"ADD_ANOTHER_PLAYER" = "Add another player";
+"ADD_ANOTHER_LIST" = "Add another list";
 
 // MARK: - Menu Titles
 
