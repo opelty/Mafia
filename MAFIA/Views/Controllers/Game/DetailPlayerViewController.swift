@@ -14,7 +14,7 @@ class DetailPlayerViewController: UIViewController {
     @IBOutlet weak var imageRole: UIImageView!
     @IBOutlet weak var roleName: UILabel!
     
-    weak var player: PlayerMO?
+    weak var player: Player?
     weak var previousViewController: GameViewController?
 
     override func viewDidLoad() {
