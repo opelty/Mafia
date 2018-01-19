@@ -195,7 +195,7 @@ extension GameViewController: UITableViewDelegate {
 //    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_PLAYER_ACTION".localized()) {
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE_ACTION".localized()) {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completion: (Bool) -> Void) in
             if let strongSelf = self {
                 strongSelf.presenter.deletePlayer(player: strongSelf.playersToDisplay[indexPath.row], indexPath: indexPath)
@@ -209,7 +209,7 @@ extension GameViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let detailAction = UIContextualAction(style: .normal, title: "DETAIL_PLAYER_ACTION".localized()) {
+        let detailAction = UIContextualAction(style: .normal, title: "DETAIL_ACTION".localized()) {
             [weak self] (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             if let strongSelf = self {
                 let selectedPlayer = strongSelf.playersToDisplay[indexPath.row]

@@ -42,6 +42,7 @@
 "ADD_ACTION" = "Add";
 "CANCEL_ACTION" = "Cancel";
 "DELETE_ACTION" = "Delete";
+"DETAIL_ACTION" = "Detail";
 "OKAY" = "Got It";
 
 // MARK: - Menu Titles

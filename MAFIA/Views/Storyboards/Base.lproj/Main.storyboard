@@ -105,8 +105,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="sheriff" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-Kt-ewb">
-                                <rect key="frame" x="15.5" y="164" width="343" height="471"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="king" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-Kt-ewb">
+                                <rect key="frame" x="15.5" y="164" width="343" height="431"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Nombre" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQa-7Q-Df8">
                                 <rect key="frame" x="8" y="96" width="359" height="36"/>
@@ -114,27 +114,37 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Rol" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgK-AN-Tfg">
+                                <rect key="frame" x="8" y="603" width="359" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Jd-NT-Nfb" firstAttribute="bottom" secondItem="sYl-Kt-ewb" secondAttribute="bottom" constant="32" id="3KP-Vi-ZWS"/>
+                            <constraint firstItem="KgK-AN-Tfg" firstAttribute="top" secondItem="sYl-Kt-ewb" secondAttribute="bottom" constant="8" id="9wz-q0-LEv"/>
                             <constraint firstItem="sYl-Kt-ewb" firstAttribute="leading" secondItem="6Jd-NT-Nfb" secondAttribute="leading" constant="16" id="Ig2-zn-tKi"/>
+                            <constraint firstItem="6Jd-NT-Nfb" firstAttribute="trailing" secondItem="KgK-AN-Tfg" secondAttribute="trailing" constant="8" id="MV4-RO-5IB"/>
                             <constraint firstItem="6Jd-NT-Nfb" firstAttribute="trailing" secondItem="gQa-7Q-Df8" secondAttribute="trailing" constant="8" id="VmT-Nd-F55"/>
+                            <constraint firstItem="KgK-AN-Tfg" firstAttribute="leading" secondItem="6Jd-NT-Nfb" secondAttribute="leading" constant="8" id="ZBa-fb-R0V"/>
                             <constraint firstItem="gQa-7Q-Df8" firstAttribute="top" secondItem="6Jd-NT-Nfb" secondAttribute="top" constant="32" id="agl-CE-py7"/>
                             <constraint firstItem="6Jd-NT-Nfb" firstAttribute="trailing" secondItem="sYl-Kt-ewb" secondAttribute="trailing" constant="16" id="fZe-ae-ND8"/>
                             <constraint firstItem="gQa-7Q-Df8" firstAttribute="leading" secondItem="6Jd-NT-Nfb" secondAttribute="leading" constant="8" id="j5i-Dd-xXr"/>
                             <constraint firstItem="sYl-Kt-ewb" firstAttribute="top" secondItem="gQa-7Q-Df8" secondAttribute="bottom" constant="32" id="kTO-Hj-Sy2"/>
+                            <constraint firstItem="6Jd-NT-Nfb" firstAttribute="bottom" secondItem="KgK-AN-Tfg" secondAttribute="bottom" constant="16" id="pds-ue-xo2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Jd-NT-Nfb"/>
                     </view>
                     <connections>
                         <outlet property="imageRole" destination="sYl-Kt-ewb" id="pnU-05-Z1b"/>
                         <outlet property="namePlayer" destination="gQa-7Q-Df8" id="cVc-Vh-Zys"/>
+                        <outlet property="roleName" destination="KgK-AN-Tfg" id="wtN-Ew-Gve"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CH2-3c-ldH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2014" y="368"/>
+            <point key="canvasLocation" x="2013.5999999999999" y="367.46626686656674"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hli-Bk-gWx">
@@ -262,6 +272,6 @@
     </scenes>
     <resources>
         <image name="icon_menu" width="24" height="24"/>
-        <image name="sheriff" width="1956" height="1912"/>
+        <image name="king" width="612" height="408"/>
     </resources>
 </document>

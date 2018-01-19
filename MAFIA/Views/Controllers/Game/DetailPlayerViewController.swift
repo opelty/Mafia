@@ -12,6 +12,7 @@ class DetailPlayerViewController: UIViewController {
     
     @IBOutlet weak var namePlayer: UILabel!
     @IBOutlet weak var imageRole: UIImageView!
+    @IBOutlet weak var roleName: UILabel!
     
     weak var player: PlayerMO?
     weak var previousViewController: GameViewController?
@@ -22,6 +23,7 @@ class DetailPlayerViewController: UIViewController {
         if let playerUnwrapped = player {
             namePlayer.text = playerUnwrapped.name
             imageRole.image = UIImage(named: "\(playerUnwrapped.role.imageDescription)")
+            roleName.text = playerUnwrapped.role.roleDescription
         }
     }
 
