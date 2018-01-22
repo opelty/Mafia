@@ -102,7 +102,7 @@ class GameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
             destinationViewController.gamePresenter = presenter
-        } else if let destinationViewController = segue.destination as? PlayerDetailViewController {
+        } else if let destinationViewController = segue.destination as? DetailPlayerViewController {
             destinationViewController.navigationItem.title = presenter.selectedListName
             destinationViewController.player = sender as? Player
         }
@@ -203,7 +203,7 @@ extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let displayedPlayer = playersToDisplay[indexPath.row]
-        self.performSegue(withIdentifier: Segues.playerDetail, sender: displayedPlayer)
+        self.performSegue(withIdentifier: Segues.detailPlayer, sender: displayedPlayer)
         
         
     }
