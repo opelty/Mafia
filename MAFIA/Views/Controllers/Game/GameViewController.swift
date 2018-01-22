@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()        
         setupTableView()
         setupView()
-        verifyGameCanStart()
+        updateGameUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +51,7 @@ class GameViewController: UIViewController {
     
     
     @IBAction func refreshRoles(_ sender: UIBarButtonItem) {
-        refreshRoles()
+        presenter.restartGame()
     }
     
     // MARK: - Methods
@@ -97,13 +97,14 @@ class GameViewController: UIViewController {
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? ListPlayersViewController {
             destinationViewController.gamePresenter = presenter
-        } else if let destinartionVC = segue.destination as? DetailPlayerViewController {
-            destinartionVC.player = sender as? Player
+        } else if let destinationViewController = segue.destination as? PlayerDetailViewController {
+            destinationViewController.navigationItem.title = presenter.selectedListName
+            destinationViewController.player = sender as? Player
         }
     }
     
@@ -132,9 +133,12 @@ extension GameViewController: GameView {
     }
     
     func updateGameUI() {
-        verifyGameCanStart()
+        villagerLabel.text = presenter.aliveCiviliansPlayerText
+        mobLabel.text = presenter.aliveMafiaPlayerText
+        currentPlayerListName.text = presenter.selectedListName
+        tableView.isUserInteractionEnabled = presenter.gameCanStart
     }
-
+    
     func endGame(winner: Role) {
         var message: String = ""
         switch winner {
@@ -145,22 +149,22 @@ extension GameViewController: GameView {
         default:
             return
         }
-
+        
         let alert = UIAlertController(title: "END_GAME_TITLE".localized(), message: message, preferredStyle: .alert)
-
+        
         let okAction = UIAlertAction(title: "END_GAME_ACTION_TITLE".localized(), style: .default) { [weak self] (_) in
             if let strongSelf = self {
                 strongSelf.presenter.restartGame()
             }
         }
         let continuePlayingAction = UIAlertAction(title: "CONTINUE_GAME_ACTION_TITLE".localized(), style: .default, handler: nil)
-
+        
         alert.addAction(okAction)
         alert.addAction(continuePlayingAction)
         self.present(alert, animated: true, completion: nil)
-
+        
     }
-
+    
     func restartGame() {
         presenter.showPlayers()
         refreshRoles()
@@ -198,9 +202,10 @@ extension GameViewController: UITableViewDataSource {
 extension GameViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let playerToEliminate = playersToDisplay[indexPath.row]
-        presenter.kill(player: playerToEliminate)
-        presenter.didEndGame()
+        let displayedPlayer = playersToDisplay[indexPath.row]
+        self.performSegue(withIdentifier: Segues.playerDetail, sender: displayedPlayer)
+        
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -237,9 +242,9 @@ extension GameViewController: UITableViewDelegate {
         return swipeConfig
     }
 }
-
 extension GameViewController: MenuViewControllerDelegate {
     func performSegue(withIdentifier identifier: String) {
         self.performSegue(withIdentifier: identifier, sender: nil)
     }
 }
+

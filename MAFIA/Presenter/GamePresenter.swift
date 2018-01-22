@@ -22,16 +22,29 @@ class GamePresenter {
     private unowned let view: GameView
     fileprivate let playerService: PlayerService
     
-    var aliveCiviliansPlayerText: String {
-        return "\("CIVILIANS_TITLE".localized()) \n \(GameManager.currentGame.aliveCivilians)"
+    var aliveCiviliansPlayerText: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("CIVILIANS_TITLE".localized()) \n \(GameManager.currentGame.aliveCivilians)" : nil)
     }
     
-    var aliveMafiaPlayerText: String {
-        return "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)"
+    var aliveMafiaPlayerText: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return nil
+        }
+        return (gameCanStart ? "\("MAFIA_TITLE".localized()) \n \(GameManager.currentGame.aliveMafia)" : nil)
     }
     
     var selectedListName: String? {
+        if GameManager.currentGame.numberOfPlayersPlaying == 0 {
+            return "LIST_PLAYER_NO_NAME".localized()
+        }
         return GameManager.currentGame.listName
+    }
+    
+    var gameCanStart: Bool {
+        return (GameManager.currentGame.numberOfPlayersPlaying >= GameRules.minimumPlayers)
     }
     
     init(view: GameView, playerService: PlayerService = PlayerService()) {
@@ -72,6 +85,7 @@ class GamePresenter {
     func kill(player: Player) {
         GameManager.currentGame.kill(player)
         view.updateGameUI()
+        didEndGame()
     }
     
     func revivePlayer(player: Player) {
@@ -83,7 +97,7 @@ class GamePresenter {
         var winnerRole: Role = Role.none
         if GameManager.currentGame.aliveMafia == 0 {
             winnerRole = .villager
-        } else if GameManager.currentGame.aliveMafia == GameManager.currentGame.aliveCivilians {
+        } else if GameManager.currentGame.aliveMafia >= GameManager.currentGame.aliveCivilians {
             winnerRole = .mob
         }
         view.endGame(winner: winnerRole)
