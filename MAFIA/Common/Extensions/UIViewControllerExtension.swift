@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import SpriteKit
 
 extension UIViewController {
-    
     func presentAlert(title: String?, message: String?, preferredStyle: UIAlertControllerStyle = .alert, completionFirstAction: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         let okayAction = UIAlertAction(title: "OKAY".localized(), style: .default) { _ in
@@ -19,7 +19,7 @@ extension UIViewController {
         alertController.addAction(okayAction)
         
         self.present(alertController, animated: true, completion: nil)
-    }
+    }  
 }
 
 extension UIViewController: BaseView {
