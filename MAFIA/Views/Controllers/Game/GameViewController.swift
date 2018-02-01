@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()        
         setupTableView()
         setupView()
-        updateGameUI()
+        updateGameUI()        
     }
     
     override func didReceiveMemoryWarning() {
