@@ -11,8 +11,11 @@ import SpriteKit
 
 class MafiaTitleAnimation: UIView {
 
-    // MARK: - Vars & Constants
+    // MARK: - IBOutlets
     @IBOutlet weak var animationView: SKView!
+
+    // MARK: - Vars & Constants
+    let executionsPerMinute: Double = 4
 
     // MARK: - Life cycle
 
@@ -36,8 +39,6 @@ class MafiaTitleAnimation: UIView {
         let scene = makeScene(view: view)
         animationView.presentScene(scene)
 
-//        animationView.center.x = view.bounds.midX
-//        animationView.center.y = view.bounds.midY
         self.addSubview(view)
     }
 
@@ -47,33 +48,27 @@ class MafiaTitleAnimation: UIView {
         let scene = SKScene(size: size)
         scene.backgroundColor = Utils.Palette.Basic.darkBlue
         addEmoji(to: scene)
-        animateNodes(scene.children.filter { $0.name != "LETTER"} )
+        animateNodes(scene.children)
         return scene
     }
 
     func addEmoji(to scene: SKScene) {
-        let allEmoji: [Character] = ["💣", "🔪", "🔥", "🔫", "👨🏼‍✈️"]
-        let mafia: [Character] = ["M", "A", "F", "I", "A"]
-        let distance = floor(scene.size.width / CGFloat(allEmoji.count))
 
-        for (index, word) in zip(mafia, allEmoji).enumerated() {
+        let mafia: [Character] = ["M", "A", "F", "I", "A"]
+        let distance = floor(scene.size.width / CGFloat(mafia.count))
+
+        for (index, word) in mafia.enumerated() {
 
             let nodeLetter = SKLabelNode()
-            nodeLetter.text = String(word.0)
-            nodeLetter.fontSize = 26
+            nodeLetter.text = String(word)
+            nodeLetter.fontSize = (scene.frame.height / 1.5)
+            nodeLetter.fontName = "Papyrus"
             nodeLetter.fontColor = .white
             nodeLetter.verticalAlignmentMode = .center
             nodeLetter.horizontalAlignmentMode = .center
-            nodeLetter.position.y = 40
+            nodeLetter.position.y = floor(scene.frame.height / 2)
             nodeLetter.position.x = distance * (CGFloat(index) + 0.5)
-            nodeLetter.name = "LETTER"
             scene.addChild(nodeLetter)
-
-            let nodeEmoji = SKLabelNode()
-            nodeEmoji.renderEmoji(word.1)
-            nodeEmoji.position.y = 15
-            nodeEmoji.position.x = distance * (CGFloat(index) + 0.5)
-            scene.addChild(nodeEmoji)
         }
     }
 
@@ -89,23 +84,12 @@ class MafiaTitleAnimation: UIView {
                             .scale(to: 1, duration: 0.3)
                             ]),
                         // Rotate by 360 degrees (pi * 2 in radians)
-//                        .rotate(byAngle: .pi * 2, duration: 0.6)
+                        .rotate(byAngle: .pi * 2, duration: 0.6)
                         ]),
-                    .wait(forDuration: 2.4)
+                    .wait(forDuration: 60 / executionsPerMinute)
                     ]))
                 ]))
         }
     }
 
-}
-
-extension SKLabelNode {
-    func renderEmoji(_ emoji: Character) {
-        fontSize = 15
-        text = String(emoji)
-
-        // This enables us to move the label using its center point
-        verticalAlignmentMode = .center
-        horizontalAlignmentMode = .center
-    }
 }

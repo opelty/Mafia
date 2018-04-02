@@ -328,7 +328,6 @@
 		96591C5A1FE85B660067BB2E = {
 			isa = PBXGroup;
 			children = (
-				9659B3992023A1DD00F63A10 /* AnimationsAPI */,
 				6E016316201178E500E91421 /* PlayerMO+CoreDataClass.swift */,
 				6E016317201178E500E91421 /* PlayerMO+CoreDataProperties.swift */,
 				6E01631C20117B4E00E91421 /* PlayersListMO+CoreDataClass.swift */,
@@ -461,6 +460,7 @@
 		97CE9FCB1FEB057E00A8A55E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				9659B3992023A1DD00F63A10 /* AnimationsAPI */,
 				97CE9FD41FEB14EE00A8A55E /* LocalizedStrings */,
 				97CE9FD11FEB14BD00A8A55E /* Extensions */,
 				97CE9FCD1FEB05A700A8A55E /* Utils.swift */,

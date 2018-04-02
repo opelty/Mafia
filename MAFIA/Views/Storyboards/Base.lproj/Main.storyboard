@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--MAFIA-->
+        <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="GameViewController" customModule="MAFIA" customModuleProvider="target" sceneMemberID="viewController">
@@ -67,7 +67,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="MAFIA" id="15l-ID-Vvp">
+                    <navigationItem key="navigationItem" id="15l-ID-Vvp">
                         <barButtonItem key="leftBarButtonItem" image="icon_menu" id="WFJ-7Z-SAz">
                             <connections>
                                 <action selector="showMenu:" destination="BYZ-38-t0r" id="qP2-8o-p86"/>
@@ -80,7 +80,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="currentPlayerListName" destination="bPs-tW-ux6" id="RWk-mY-z2b"/>
                         <outlet property="mobLabel" destination="08L-Io-bBv" id="195-sg-COC"/>
                         <outlet property="tableView" destination="oQm-oX-6bK" id="lJT-3B-2rn"/>
                         <outlet property="villagerLabel" destination="Z0i-pH-HsG" id="vH7-Jh-jtA"/>

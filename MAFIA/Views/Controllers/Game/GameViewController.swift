@@ -15,7 +15,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var villagerLabel: UILabel!
     @IBOutlet weak var mobLabel: UILabel!
-    @IBOutlet weak var currentPlayerListName: UILabel!
     
     
     // MARK: Vars & Constants
@@ -121,7 +120,6 @@ extension GameViewController: GameView {
     func updateGameUI() {
         villagerLabel.text = presenter.aliveCiviliansPlayerText
         mobLabel.text = presenter.aliveMafiaPlayerText
-        currentPlayerListName.text = presenter.selectedListName
         tableView.isUserInteractionEnabled = presenter.gameCanStart
     }
     
